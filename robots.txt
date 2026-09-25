@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fernando-dev-cyber.github.io/Fernando-dev-cyber/sitemap.xml

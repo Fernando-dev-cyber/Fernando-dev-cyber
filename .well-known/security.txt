@@ -1,0 +1,13 @@
+# Security policy 
+# RFC 9116 — https://www.rfc-editor.org/rfc/rfc9116
+
+Contact: fdiaz.sec@proton.me
+Contact: https://fernando-dev-cyber.github.io/Fernando-dev-cyber/#contact
+Expires: 2027-06-09T00:00:00.000Z
+Preferred-Languages: es
+
+
+
+# ¿Encontraste algo? Me encantaría saberlo.
+# Sitio estático, sin backend; 
+# se agradecen los informes sobre cualquier cosa relacionada con este dominio y recibirán respuesta.

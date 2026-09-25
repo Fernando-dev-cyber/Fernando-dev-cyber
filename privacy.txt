@@ -1,0 +1,16 @@
+Aviso de Privacidad — https://fernando-dev-cyber.github.io/Fernando-dev-cyber/
+=============================================================================
+
+Este es un portafolio técnico y profesional de carácter estático.
+El sitio respeta la privacidad de los visitantes y aplica los siguientes principios:
+
+- Sin almacenamiento de telemetría: No se registran direcciones IP ni datos de conexión en bases de datos externas o Google Sheets.
+- Sin cookies ni rastreo: No se utilizan cookies de seguimiento, herramientas analíticas ni publicidad.
+- Detección local en cliente: El widget interactivo en el inicio muestra información pública provista por el navegador de forma efímera durante la sesión y no guarda ningún registro.
+- Infraestructura: El sitio está alojado en GitHub Pages. El procesamiento de registros de red a nivel de infraestructura se rige bajo la política de privacidad de GitHub (https://docs.github.com/site-policy/privacy-policies).
+
+Contacto:
+Para cualquier duda o solicitud relacionada con este sitio:
+  fdiaz.sec@proton.me
+
+Última actualización: 2026-09-24

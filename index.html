@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Fernando Raúl Díaz Benites · Security & Automation</title>
+  <meta name="description"
+    content="Fernando Raúl Díaz Benites – 4+ years building security systems, automation tooling, and detection infrastructure across enterprise environments. Based in Hyderabad, India.">
+  <meta name="keywords"
+    content="cybersecurity, pentesting, red team, blue team, python, bash, tryhackme, hackthebox, burpsuite, iso27001">
+  <meta name="author" content="Fernando Raúl Díaz Benites">
+  <link rel="canonical" href="https://fernando-dev-cyber.github.io/Fernando-dev-cyber/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fernando-dev-cyber.github.io/Fernando-dev-cyber/">
+  <meta property="og:title" content="Fernando Raúl Díaz Benites · Ciberseguridad">
+  <meta property="og:description"
+    content="Portafolio Técnico: Write-ups de CTFs, Análisis de Vulnerabilidades y Proyectos de Ciberseguridad.">
+  <meta property="og:image" content="https://fernando-dev-cyber.github.io/Fernando-dev-cyber/winpixel.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fernando Raúl Díaz Benites · Ciberseguridad">
+  <meta name="twitter:description"
+    content="cybersecurity, pentesting, red team, blue team, python, bash, tryhackme, hackthebox, burpsuite, iso27001">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Fernando Raúl Díaz Benites",
+    "jobTitle": "Cybersecurity & Systems Engineer",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lima", "addressCountry": "PE" },
+    "email": "feso.diaz@gmail.com || fdiaz.sec@proton.me",
+    "url": "https://fernando-dev-cyber.github.io/Fernando-dev-cyber/",
+    "knowsAbout": ["Cybersecurity", "wireshark", "Pentesting", "Threat Hunting", "Python", "Linux", "TryHackMe"]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>">
+</head>
+
+<body>
+
+  <!-- ========== NAV ========== -->
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo"><span>&gt;</span> FRDB_</a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#home">Casa</a></li>
+        <li><a href="#about">Sobre mi</a></li>
+        <li><a href="#skills">Habilidades</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <!-- <li><a href="blog.html">Blog</a></li> -->
+        <li><a href="#experience">Experiencia</a></li>
+        <!-- <li><a href="links.html">Personal</a></li> -->
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">⬤ Dark</button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section id="home" aria-label="Introduction">
+    <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+    <div class="container hero-content">
+      <div class="hero-badges">
+        <div class="hero-badge">
+          <span class="status-dot"></span>
+          DISPONIBLE PARA OPORTUNIDADES
+        </div>
+        <div class="hero-badge hero-badge--spec">
+          🎓 B.Tech · Cyber Security Specialization
+        </div>
+      </div>
+      <h1 class="hero-title">
+        <span class="greeting">Hola 🐱‍👤, Soy</span>
+        <span class="glitch" data-text="Fernando Raúl Díaz Benites">Fernando Raúl Díaz Benites</span>
+        <span class="typewriter-wrap">
+          <span id="typewriter" class="typewriter accent"></span>
+        </span>
+      </h1>
+      <p class="hero-sub">
+        Estudiante de Ingeniería de Sistemas enfocado en Ciberseguridad.
+        Apasionado por el hacking ético, análisis de vulnerabilidades, automatización en Python/Bash y hardening de
+        sistemas.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">↓ Ver trabajos</a>
+        <a href="#contact" class="btn btn-outline">Contacto</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num counter" data-target="4" data-suffix="+">0</span>
+          <span class="stat-label">Años de estudio & labs</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num counter" data-target="4" data-suffix="">0</span>
+          <span class="stat-label">Companies Served</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num counter" data-target="15" data-suffix="+">0</span>
+          <span class="stat-label">Tecnologías dominadas</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num counter" data-target="3" data-suffix="+">0</span>
+          <span class="stat-label">Proyectos & herramientas</span>
+        </div>
+      </div>
+      <div class="recon-line" id="recon-line" hidden aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <div class="about-img-frame">
+            <img src="winpixel.png" alt="Fernando Díaz" width="300" height="300">
+          </div>
+          <div class="about-tags">
+            <span class="tag">ISO 27001</span>
+            <span class="tag">Python</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Wireshark</span>
+            <span class="tag">TryHackMe</span>
+            <span class="tag">Nmap</span>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <p class="section-label">Sobre mi</p>
+          <h2 id="about-heading" class="section-title">Lo primero es la defensa.<br>Constatemente aprendiendo.</h2>
+          <p>
+            Perfil orientado a la <strong>Ciberseguridad Defensiva y Operaciones de Seguridad (Blue Team / SOC
+              Junior)</strong>.
+            Mi enfoque se centra en la protección de sistemas y redes, así como en la identificación y respuesta a
+            amenazas.
+            Cuento con formación en ingeniería que respalda mi comprensión de redes, arquitectura de sistemas y
+            administración de infraestructura Linux.
+          </p>
+          <p>
+            Manejo práctico de entornos y herramientas esenciales de auditoría, análisis e inspección
+            de paquetes con <em>Wireshark</em>, escaneo y reconocimiento con <em>Nmap</em> y
+            <em>OSINT</em>,
+            pruebas de seguridad web con <em>Burp Suite</em> y despliegue de entornos controlados en contenedores
+            <em>Docker</em> y máquinas virtuales.
+          </p>
+          <p>
+            Documento activamente todo mi proceso — análisis de herramientas, write-ups de máquinas y scripts propios de
+            automatización. Mi portafolio es mi laboratorio técnico público.
+          </p>
+          <a href="#contact" class="btn btn-primary" style="margin-top:1rem; display:inline-flex;">Let's Connect →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DOMAINS ========== -->
+  <section id="domains" aria-labelledby="domains-heading">
+    <div class="container">
+      <p class="section-label reveal">MI MAPA DE CONOCIMIENTO</p>
+      <h2 id="domains-heading" class="section-title reveal">Dominios de Seguridad</h2>
+      <p class="section-subtitle reveal">
+        Áreas en las que enfoco mi formación técnica, laboratorios prácticos y proyectos de investigación.
+      </p>
+
+      <div class="domain-clusters">
+
+        <!-- DEFENSA -->
+        <div class="domain-cluster reveal">
+          <div class="domain-cluster-header">
+            <span class="domain-cluster-icon">🛡</span>
+            <span class="domain-cluster-label">Defensa (Blue Team)</span>
+          </div>
+          <div class="domain-tags">
+            <span class="domain-tag">Detection Engineering</span>
+            <span class="domain-tag">Threat Hunting</span>
+            <span class="domain-tag">Incident Response</span>
+            <span class="domain-tag">Digital Forensics</span>
+            <span class="domain-tag">Network Security</span>
+            <span class="domain-tag">Endpoint Security</span>
+            <span class="domain-tag">Gestión de Vulnerabilidades</span>
+          </div>
+        </div>
+
+        <!-- OFENSIVA -->
+        <div class="domain-cluster domain-cluster--offense reveal">
+          <div class="domain-cluster-header">
+            <span class="domain-cluster-icon">⚔️</span>
+            <span class="domain-cluster-label">Ofensiva <span class="learning-badge">Aprendiendo</span></span>
+          </div>
+          <div class="domain-tags">
+            <span class="domain-tag domain-tag--offense">Conceptos Red Team</span>
+            <span class="domain-tag domain-tag--offense">OSINT</span>
+            <span class="domain-tag domain-tag--offense">CTF Walkthroughs</span>
+            <span class="domain-tag domain-tag--offense">Web App Security</span>
+            <span class="domain-tag domain-tag--offense">Escalada de Privilegios</span>
+          </div>
+        </div>
+
+        <!-- GOBERNANZA Y SISTEMAS -->
+        <div class="domain-cluster domain-cluster--gov reveal">
+          <div class="domain-cluster-header">
+            <span class="domain-cluster-icon">📋</span>
+            <span class="domain-cluster-label">Gobernanza & Sistemas</span>
+          </div>
+          <div class="domain-tags">
+            <span class="domain-tag domain-tag--gov">ISO 27001 / SGSI</span>
+            <span class="domain-tag domain-tag--gov">Gestión de Riesgos</span>
+            <span class="domain-tag domain-tag--gov">Hardening Linux</span>
+            <span class="domain-tag domain-tag--gov">Seguridad en Redes</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS ========== -->
+  <section id="skills" aria-labelledby="skills-heading">
+    <div class="container">
+      <p class="section-label reveal">Arsenal técnico</p>
+      <h2 id="skills-heading" class="section-title reveal">Con qué trabajo</h2>
+      <p class="section-subtitle reveal">Herramientas, plataformas y framewoks que empleo.</p>
+      <div class="skills-categories">
+
+        <div class="skill-category reveal">
+          <p class="skill-category-label">Detection &amp; Response</p>
+          <div class="skill-tags">
+            <span class="tag">CrowdStrike Falcon</span>
+            <span class="tag">Splunk</span>
+            <span class="tag">Microsoft Sentinel</span>
+            <span class="tag">Malware Analysis</span>
+            <span class="tag">Threat Hunting</span>
+            <span class="tag">IOC Analysis</span>
+            <span class="tag">CIRT Operations</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <p class="skill-category-label">Identity &amp; Access</p>
+          <div class="skill-tags">
+            <span class="tag">CyberArk PAM</span>
+            <span class="tag">SailPoint IIQ</span>
+            <span class="tag">Active Directory</span>
+            <span class="tag">Azure AD</span>
+            <span class="tag">Intune</span>
+            <span class="tag">JumpCloud</span>
+            <span class="tag">OAuth / SAML</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <p class="skill-category-label">GRC &amp; Compliance</p>
+          <div class="skill-tags">
+            <span class="tag">ISO 27001</span>
+            <span class="tag">ISO 27002</span>
+            <span class="tag">Risk Analysis</span>
+            <span class="tag">Audit Support</span>
+            <span class="tag">ISMS</span>
+            <span class="tag">ServiceNow</span>
+            <span class="tag">Jira</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <p class="skill-category-label">Scripting &amp; Automatización</p>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Bash</span>
+            <span class="tag">Power Automate</span>
+            <span class="tag">Git</span>
+            <span class="tag">Gmail API</span>
+            <span class="tag">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <p class="skill-category-label">Endpoints &amp; Infrastructure</p>
+          <div class="skill-tags">
+            <span class="tag">JAMF Pro</span>
+            <span class="tag">Kaspersky EDR</span>
+            <span class="tag">Azure</span>
+            <span class="tag">Office 365</span>
+            <span class="tag">Firewall Analysis</span>
+            <span class="tag">Vulnerability Assessment</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <div class="container">
+      <p class="section-label reveal">Cosas que he construido</p>
+      <h2 id="projects-heading" class="section-title reveal">Proyectos</h2>
+      <p class="section-subtitle reveal">Proyectos que demuestran mi conocimiento práctico y técnico.</p>
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-icon">🔓</div>
+            <a href="https://github.com/Fernando-dev-cyber/windows-ad-wazuh-soc-lab" target="_blank" rel="noopener"
+              class="project-link">Ver en mi
+              GitHub →</a>
+          </div>
+          <h3 class="project-title">windows-ad-wazuh-soc-lab</h3>
+          <p class="project-desc"> </p>
+          <div class="project-tags">
+            <span class="tag">Linux</span><span class="tag">Server</span><span class="tag">Wazuh</span><span
+              class="tag">Logs</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="gh-live" id="gh-live" hidden>
+        <div class="gh-live-header">
+          <span class="gh-live-title"><span class="gh-live-dot"></span> Actualmente en mi Github</span>
+          <a href="https://github.com/Fernando-dev-cyber" target="_blank" rel="noopener" class="project-link">@FernanDEV
+            →</a>
+        </div>
+        <div class="gh-repos" id="gh-repos"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTF & LEARNING ========== -->
+  <section id="ctf" aria-labelledby="ctf-heading">
+    <div class="container">
+      <p class="section-label reveal">SEGUIMIENTO DE MI PROGRESO</p>
+      <h2 id="ctf-heading" class="section-title reveal">CTF &amp; Aprendizaje</h2>
+      <p class="section-subtitle reveal">Seguimiento de cada concepto y curso en el que estoy.
+        Lo actualizo a medida que aumento mi conocimiento.</p>
+      <div class="ctf-grid">
+
+        <div class="ctf-platform-card reveal">
+          <div class="ctf-platform-header">
+            <span class="ctf-platform-icon">⚑</span>
+            <div>
+              <div class="ctf-platform-name">TryHackMe</div>
+              <a href="https://tryhackme.com/p/feso.diaz" target="_blank" rel="noopener"
+                class="ctf-profile-link">@feso.diaz →</a>
+            </div>
+          </div>
+          <img src="https://tryhackme-badges.s3.amazonaws.com/feso.diaz.png" alt="TryHackMe rank badge para feso.diaz"
+            class="ctf-badge-img" loading="lazy" onerror="this.style.display='none'">
+          <div class="thm-stats" id="thm-stats" hidden></div>
+        </div>
+
+        <div class="ctf-log reveal">
+          <div class="ctf-log-header">
+            <span class="ctf-log-title">Recién terminados</span>
+            <a href="blog.html?domain=ctf" class="ctf-view-all">CTF reseñas →</a>
+          </div>
+          <div id="ctf-completions-list"></div>
+          <!-- populated by ctf-data.js -->
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERIENCE ========== -->
+  <section id="experience" aria-labelledby="exp-heading">
+    <div class="container">
+      <p class="section-label reveal">REGISTRO DE EXPERIENCIA</p>
+      <h2 id="exp-heading" class="section-title reveal">Experiencia profesional</h2>
+      <p class="section-subtitle reveal">Mi historial en entornos empresariales.</p>
+
+      <div class="timeline">
+
+
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-header">
+            <span class="timeline-role">Bug Hunter <span class="timeline-type-badge">Internship</span></span>
+            <span class="timeline-company">@ HackerOne</span>
+            <span class="timeline-period">Dec 2025 – Present</span>
+          </div>
+        </div>
+
+
+
+        <!-- Education -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-header">
+            <span class="timeline-role">Ingeniero de Sistemas e Informática</span>
+            <span class="timeline-company">@ Universidad Tecnológica del Perú</span>
+            <span class="timeline-period"> 2021 – Agos 2026</span>
+          </div>
+          <div class="timeline-card">
+            <ul class="timeline-bullets">
+              <li>Especialización en <strong>Ciberseguridad</strong></li>
+              <li>Network Security, Ethical Hacking, Cryptography, Digital Forensics, Cloud Computing</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Cyber Security</span><span class="tag">Ing. Sistemas</span><span class="tag">UTP
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <p class="section-label reveal">Ponte en contacto conmigo ^_^</p>
+      <h2 id="contact-heading" class="section-title reveal">Canal abierto</h2>
+      <p class="section-subtitle reveal">Ya sea una oportunidad de trabajo, una colaboración o simplemente una charla de
+        seguridad, estoy
+        dispuesto</p>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-val">fdiaz.sec@protonmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Locación</div>
+              <div class="contact-val">Lima, Perú</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💼</div>
+            <div>
+              <div class="contact-label">Estado</div>
+              <div class="contact-val" style="color:var(--accent);">Abierto a las oportunidades</div>
+            </div>
+          </div>
+          <div>
+            <div class="contact-label" style="margin-bottom:0.75rem;">Encuentrame en línea</div>
+            <div class="contact-links">
+              <a href="https://www.linkedin.com/in/fernando-ra%C3%BAl-d%C3%ADaz-benites-161936354/" target="_blank"
+                rel="noopener" class="social-btn">in
+                LinkedIn</a>
+              <a href="https://github.com/Fernando-dev-cyber" target="_blank" rel="noopener" class="social-btn">⌥
+                GitHub</a>
+              <a href="https://tryhackme.com/p/feso.diaz" target="_blank" rel="noopener" class="social-btn">⚑
+                TryHackMe</a>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="terminal-form">
+            <div class="term-bar">
+              <div class="term-dot term-dot-r"></div>
+              <div class="term-dot term-dot-y"></div>
+              <div class="term-dot term-dot-g"></div>
+              <span class="term-title"></span>
+            </div>
+            <form class="term-body" id="contact-form">
+              <div class="form-group">
+                <label class="form-label" for="f-name">nombre</label>
+                <input type="text" id="f-name" name="name" class="form-input" placeholder="Tu nombre" required
+                  autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-email">email</label>
+                <input type="email" id="f-email" name="email" class="form-input" placeholder="tu@correo.com" required
+                  autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-subject">subject</label>
+                <input type="text" id="f-subject" name="subject" class="form-input"
+                  placeholder="Oportunidad de trabajo / Colaboración / Un saludo">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-message">mensaje</label>
+                <textarea id="f-message" name="message" class="form-textarea" placeholder="Tu mensaje..."
+                  required></textarea>
+              </div>
+              <button type="submit" class="form-submit">
+                <span>⇒</span> enviar_mensaje.sh
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        © 2026 Fernando Díaz · <span class="mono"
+          style="color:var(--accent);">https://fernando-dev-cyber.github.io/Fernando-dev-cyber/</span>
+        <span class="last-updated" id="last-updated" hidden></span>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#home">Casa</a>
+        <a href="#skills">Habilidades</a>
+        <a href="links.html">Personal</a>
+        <a href="#contact">Contacto</a>
+        <a href="privacy.txt">Privacy</a>
+        <a href=".well-known/security.txt">security.txt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- ========== TERMINAL FAB ========== -->
+  <button class="terminal-fab" id="terminal-fab" aria-label="Open terminal" title="Open terminal">⌨</button>
+
+  <div class="terminal-window" id="terminal-window" role="dialog" aria-label="Interactive terminal">
+    <div class="term-bar">
+      <div class="term-dot term-dot-r"></div>
+      <div class="term-dot term-dot-y"></div>
+      <div class="term-dot term-dot-g"></div>
+      <span class="term-title">FRDB@pm-terminal ~ bash</span>
+    </div>
+    <div class="terminal-output" id="term-output"></div>
+    <div class="terminal-input-wrap">
+      <span class="term-prompt">FRDB@pm ~ $</span>
+      <input type="text" class="terminal-input" id="term-input" placeholder="type a command... 👻" autocomplete="off"
+        spellcheck="false">
+    </div>
+  </div>
+
+  <!-- ========== ACHIEVEMENT TOAST ========== -->
+  <div class="achievement-toast" id="achievement-toast" role="status" aria-live="polite">
+    <div class="achievement-icon">🏆</div>
+    <div class="achievement-text">
+      <div class="achievement-label">Logro Desbloqueado</div>
+      <div class="achievement-name"></div>
+    </div>
+  </div>
+
+  <script src="ctf-data.js"></script>
+  <script>
+    (function () {
+      var list = document.getElementById('ctf-completions-list');
+      if (!list || typeof CTF_DATA === 'undefined') return;
+      var items = CTF_DATA.completions;
+      if (!items || items.length === 0) {
+        list.innerHTML = '<div class="ctf-empty">No entries yet — first room in progress.</div>';
+        return;
+      }
+      list.innerHTML = items.slice(0, 5).map(function (c) {
+        return '<a href="' + (c.url || '#') + '" target="_blank" rel="noopener" class="ctf-entry">' +
+          '<div class="ctf-entry-name">' + c.name + '</div>' +
+          '<div class="ctf-entry-meta">' +
+          '<span class="ctf-platform-tag">' + c.platform + '</span>' +
+          '<span class="ctf-category">' + c.category + '</span>' +
+          '<span class="ctf-diff ctf-diff--' + c.difficulty + '">' + c.difficulty + '</span>' +
+          '<span class="ctf-date">' + c.date + '</span>' +
+          '</div>' +
+          '</a>';
+      }).join('');
+    })();
+
+    /* TryHackMe live stats — points / rank / rooms.
+      THM has no official public API and most endpoints don't send CORS headers,
+      so this is best-effort: it tries the public-profile endpoint and, on
+      failure, falls back to a CORS proxy. If both fail it stays hidden and the
+       badge still shows. Nothing here ever blocks or errors the page. */
+    (function () {
+      var box = document.getElementById('thm-stats');
+      if (!box || typeof CTF_DATA === 'undefined') return;
+      var thm = (CTF_DATA.platforms || []).find(function (p) { return p.name === 'TryHackMe'; });
+      var user = thm && thm.handle;
+      if (!user) return;
+
+      var cacheKey = 'pm-thm-stats';
+      function fmt(n) { return (typeof n === 'number') ? n.toLocaleString() : n; }
+
+      function pick(obj, keys) {
+        for (var i = 0; i < keys.length; i++) {
+          var v = obj && obj[keys[i]];
+          if (v !== undefined && v !== null && v !== '') return v;
+        }
+        return null;
+      }
+
+      function render(data) {
+        var d = (data && data.data) ? data.data : data;
+        if (!d) return;
+        var points = pick(d, ['points', 'userPoints', 'totalPoints']);
+        var rank = pick(d, ['rank', 'userRank']);
+        var rooms = pick(d, ['completedRoomsCount', 'roomsCompleted', 'completedRooms', 'rooms']);
+        if (typeof rooms === 'object' && rooms) rooms = rooms.length || pick(rooms, ['count', 'total']);
+        var cells = [];
+        if (points != null) cells.push(['Points', fmt(points)]);
+        if (rank != null) cells.push(['Rank', '#' + fmt(rank)]);
+        if (rooms != null) cells.push(['Rooms', fmt(rooms)]);
+        if (!cells.length) return;
+        box.innerHTML = cells.map(function (c) {
+          return '<div class="thm-stat"><span class="thm-stat-num">' + c[1] +
+            '</span><span class="thm-stat-lbl">' + c[0] + '</span></div>';
+        }).join('');
+        box.hidden = false;
+      }
+
+      // Serve instantly from cache (24h) so it shows even if the network is slow.
+      try {
+        var c = JSON.parse(sessionStorage.getItem(cacheKey) || 'null');
+        if (c && Date.now() - c.t < 86400000) render(c.data);
+      } catch (e) { }
+
+      var api = 'https://tryhackme.com/api/v2/public-profile?username=' + encodeURIComponent(user);
+      var proxy = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(api);
+
+      function tryFetch(url) {
+        return fetch(url, { headers: { 'Accept': 'application/json' } })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(); });
+      }
+
+      tryFetch(api).catch(function () { return tryFetch(proxy); })
+        .then(function (data) {
+          render(data);
+          try { sessionStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), data: data })); } catch (e) { }
+        })
+        .catch(function () { /* keep hidden; badge still shows */ });
+    })();
+  </script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+<!--
+  Portafolio Técnico de Fernando Raúl Díaz Benites
+  Basado en la arquitectura web original de Pranay Mokida (github.com/pranayesse/home).
+  Modificado y optimizado para entornos de Ciberseguridad / Blue Team.
+-->
