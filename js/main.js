@@ -527,7 +527,7 @@ if (form) {
   const ghRepos = document.getElementById('gh-repos');
   if (ghLive && ghRepos) {
     // Clave de caché personalizada y endpoint con mi usuario:
-    cachedJSON('pm-gh-repos', 'https://api.github.com/users/Fernando-dev-cyber/repos?sort=pushed&per_page=12')
+    cachedJSON('fd-gh-repos', 'https://api.github.com/users/Fernando-dev-cyber/repos?sort=pushed&per_page=12')
       .then(repos => {
         // Ignora forks y selecciona hasta 4 repositorios activos
         const top = repos.filter(r => !r.fork).slice(0, 4);
