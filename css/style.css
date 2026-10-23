@@ -3,8 +3,7 @@
   style.css
    ============================================================ */
 
-/* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Google Fonts se cargan en el <head> con preconnect + <link> (mejor que @import). */
 
 /* ---------- CSS Custom Properties ---------- */
 :root {
@@ -144,6 +143,32 @@ h3 {
 .accent {
   color: var(--accent);
 }
+
+/* ---------- Iconos SVG (sprite icons.svg vía <use>) ---------- */
+.icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* Contenedores de icono: tamaño explícito en vez de heredar font-size */
+.contact-icon .icon { width: 1.4rem; height: 1.4rem; }
+.domain-cluster-icon .icon { width: 1.3rem; height: 1.3rem; }
+.project-icon .icon { width: 1.9rem; height: 1.9rem; }
+.ctf-platform-icon .icon { width: 1.6rem; height: 1.6rem; }
+.achievement-icon .icon { width: 1.5rem; height: 1.5rem; }
+.terminal-fab .icon { width: 1.4rem; height: 1.4rem; }
+.theme-toggle .icon { width: 0.95rem; height: 0.95rem; }
+.hero-badge .icon { width: 0.9rem; height: 0.9rem; }
+.greeting .icon { width: 1em; height: 1em; }
+.gh-repo-meta .icon { width: 0.75rem; height: 0.75rem; vertical-align: -0.1em; }
 
 /* ---------- Layout Helpers ---------- */
 .container {
@@ -568,171 +593,8 @@ nav:not(.footer-links) {
 }
 
 /* ---------- Skills ---------- */
-#skills {}
-
-.skills-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-
-.scan-btn {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  padding: 0.5rem 1.1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  letter-spacing: 0.08em;
-  transition: all var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.scan-btn:hover {
-  background: var(--accent);
-  color: #fff;
-}
-
-.scan-btn.scanning {
-  -webkit-animation: scanning 1s steps(2) infinite;
-  animation: scanning 1s steps(2) infinite;
-}
-
-@-webkit-keyframes scanning {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.4;
-  }
-}
-
-@keyframes scanning {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.4;
-  }
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-.skill-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  transition: all var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.skill-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow);
-}
-
-.skill-card:hover::before {
-  transform: scaleX(1);
-}
-
-.skill-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.2rem;
-}
-
-.skill-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--accent-glow);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-}
-
-.skill-card-title {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--text);
-}
-
-.skill-items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.skill-item {}
-
-.skill-item-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.3rem;
-}
-
-.skill-name {
-  font-size: 0.82rem;
-  color: var(--text);
-}
-
-.skill-pct {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--accent);
-}
-
-.skill-bar {
-  height: 4px;
-  background: var(--surface2);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.skill-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  border-radius: 2px;
-  width: 0;
-  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* Estilos de skills por categoría: ver .skills-categories más abajo.
+   (Se retiraron las barras de progreso / .skill-card del diseño anterior.) */
 
 /* ---------- Experience ---------- */
 #experience {
@@ -1161,69 +1023,6 @@ nav:not(.footer-links) {
   letter-spacing: 0.05em;
   color: var(--muted);
   text-align: center;
-}
-
-/* ---------- Explore More (pre-footer CTA) ---------- */
-.explore-section {
-  padding-top: 0;
-}
-
-.explore-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.explore-card {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-  color: inherit;
-  transition: all var(--transition);
-}
-
-.explore-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow);
-  transform: translateY(-3px);
-}
-
-.explore-icon {
-  font-size: 1.8rem;
-}
-
-.explore-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.explore-title {
-  font-family: var(--mono);
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-}
-
-.explore-desc {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.explore-arrow {
-  margin-left: auto;
-  font-size: 1.4rem;
-  color: var(--accent);
-  flex-shrink: 0;
-  transition: transform var(--transition);
-}
-
-.explore-card:hover .explore-arrow {
-  transform: translateX(4px);
 }
 
 /* ---------- Footer ---------- */
@@ -2231,16 +2030,8 @@ footer {
     gap: 2rem;
   }
 
-  .explore-grid {
-    grid-template-columns: 1fr;
-  }
-
   .hero-stats {
     gap: 1.5rem;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
   }
 
   .skills-categories {

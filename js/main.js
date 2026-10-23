@@ -6,11 +6,23 @@
 const root = document.documentElement;
 const themeKey = 'pm-theme';
 
+/* Ruta base del sprite de iconos: el index vive en la raíz, las entradas del
+   blog en /posts/ y necesitan un nivel hacia arriba. */
+const ICON_BASE = /\/posts\//.test(location.pathname) ? '../icons.svg' : 'icons.svg';
+
+/* Helper: <svg class="icon" aria-hidden="true"><use href="...#id"></use></svg> */
+function iconSvg(id) {
+  return '<svg class="icon" aria-hidden="true"><use href="' + ICON_BASE + '#' + id + '"></use></svg>';
+}
+
 function applyTheme(theme) {
   root.setAttribute('data-theme', theme);
   localStorage.setItem(themeKey, theme);
   const btn = document.getElementById('theme-toggle');
-  if (btn) btn.textContent = theme === 'dark' ? '☀ Light' : '⬤ Dark';
+  if (btn) {
+    const dark = theme === 'dark';
+    btn.innerHTML = iconSvg(dark ? 'sun' : 'moon') + ' ' + (dark ? 'Light' : 'Dark');
+  }
 }
 
 function initTheme() {
@@ -20,6 +32,8 @@ function initTheme() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   initTheme();
 
   const toggle = document.getElementById('theme-toggle');
@@ -35,10 +49,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('nav-links');
   if (ham && navLinks) {
     ham.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+      const open = navLinks.classList.toggle('open');
+      ham.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => navLinks.classList.remove('open'));
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        ham.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 
@@ -61,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Matrix Rain Canvas ---------- */
   const canvas = document.getElementById('matrix-canvas');
-  if (canvas) {
+  if (canvas && !reducedMotion) {
     const ctx = canvas.getContext('2d');
     const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     let cols, drops;
@@ -91,7 +109,24 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    setInterval(drawMatrix, 60);
+    /* Solo corre cuando el hero está a la vista y la pestaña está activa —
+       evita quemar CPU en segundo plano. */
+    let matrixTimer = null;
+    let heroInView = true;
+    function syncMatrix() {
+      if (heroInView && !document.hidden) {
+        if (!matrixTimer) matrixTimer = setInterval(drawMatrix, 60);
+      } else if (matrixTimer) {
+        clearInterval(matrixTimer);
+        matrixTimer = null;
+      }
+    }
+    syncMatrix();
+    document.addEventListener('visibilitychange', syncMatrix);
+    new IntersectionObserver((entries) => {
+      heroInView = entries[0].isIntersecting;
+      syncMatrix();
+    }, { threshold: 0 }).observe(canvas);
   }
 
   /* ---------- Typewriter ---------- */
@@ -132,54 +167,11 @@ window.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.12 });
   reveals.forEach(r => revealObs.observe(r));
 
-  /* ---------- Skill Bars ---------- */
-  const skillBars = document.querySelectorAll('.skill-bar-fill');
-  let scanned = false;
-
-  function runScan() {
-    skillBars.forEach(bar => {
-      bar.style.width = bar.dataset.pct + '%';
-    });
-    scanned = true;
-    const btn = document.getElementById('scan-btn');
-    if (btn) { btn.textContent = '✓ SCAN COMPLETE'; btn.classList.remove('scanning'); }
-  }
-
-  const skillsSection = document.getElementById('skills');
-  if (skillsSection) {
-    const skillObs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && !scanned) {
-        setTimeout(runScan, 400);
-        skillObs.disconnect();
-      }
-    }, { threshold: 0.3 });
-    skillObs.observe(skillsSection);
-  }
-
-  const scanBtn = document.getElementById('scan-btn');
-  if (scanBtn) {
-    scanBtn.addEventListener('click', () => {
-      if (scanned) {
-        skillBars.forEach(bar => { bar.style.transition = 'none'; bar.style.width = '0'; });
-        scanned = false;
-        scanBtn.textContent = '⟳ RE-SCAN';
-        setTimeout(() => {
-          skillBars.forEach(bar => { bar.style.transition = ''; });
-          runScan();
-        }, 100);
-      } else {
-        scanBtn.classList.add('scanning');
-        scanBtn.textContent = '⬤ SCANNING...';
-        setTimeout(runScan, 600);
-      }
-    });
-  }
-
   /* ---------- Achievements ---------- */
   const achievements = [
-    { id: 'skills', icon: '🛡', name: 'Security Skills Unlocked' },
-    { id: 'experience', icon: '⚔', name: 'Mission Log Accessed' },
-    { id: 'contact', icon: '📡', name: 'Comms Channel Open' },
+    { id: 'skills', icon: 'shield', name: 'Security Skills Unlocked' },
+    { id: 'experience', icon: 'swords', name: 'Mission Log Accessed' },
+    { id: 'contact', icon: 'radio', name: 'Comms Channel Open' },
   ];
 
   const shown = new Set();
@@ -208,7 +200,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function showAchievement({ icon, name }) {
     if (!toast) return;
-    toast.querySelector('.achievement-icon').textContent = icon;
+    toast.querySelector('.achievement-icon').innerHTML = iconSvg(icon);
     toast.querySelector('.achievement-name').textContent = name;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3000);
@@ -233,38 +225,36 @@ window.addEventListener('DOMContentLoaded', () => {
       { cls: 'term-line-cyan', text: 'Available commands:' },
       { cls: '', text: '  whoami        – about me' },
       { cls: '', text: '  ls skills     – list technical skills' },
-      { cls: '', text: '  ls experience – work history' },
+      { cls: '', text: '  ls experience – background' },
       { cls: '', text: '  cat contact   – contact info' },
       { cls: '', text: '  nmap          – run a scan ;)' },
-      { cls: '', text: '  blog          – open blog' },
       { cls: '', text: '  clear         – clear terminal' },
     ],
     whoami: () => [
       { cls: 'term-line-accent', text: '> FRDB' },
-      { cls: '', text: '  Role       : Risk Tech & Controls Analyst @ JP Morgan Chase' },
-      { cls: '', text: '  Exp        : 4+ years in cybersecurity' },
+      { cls: '', text: '  Role       : Bug Hunter (Intern) @ HackerOne' },
+      { cls: '', text: '  Studies    : Ing. Sistemas e Informática @ UTP' },
       { cls: '', text: '  Location   : Lima, Peru' },
-      { cls: '', text: '  Focus      : Threat hunting, incident response, GRC' },
+      { cls: '', text: '  Focus      : Blue Team / SOC · Threat Hunting' },
     ],
     'ls skills': () => [
       { cls: 'term-line-cyan', text: 'drwxr-xr-x  skills/' },
-      { cls: '', text: '  ├── CrowdStrike Falcon  ├── Splunk' },
-      { cls: '', text: '  ├── Microsoft Sentinel  ├── CyberArk PAM' },
-      { cls: '', text: '  ├── SailPoint IIQ       ├── Python / Bash / SQL' },
-      { cls: '', text: '  ├── ISO 27001/27002     ├── CIRT Operations' },
-      { cls: '', text: '  └── Azure AD / Intune   └── Web App Pentesting' },
+      { cls: '', text: '  ├── Wireshark         ├── Nmap & NSE' },
+      { cls: '', text: '  ├── Wazuh SIEM        ├── Burp Suite' },
+      { cls: '', text: '  ├── Python / Bash     ├── Docker' },
+      { cls: '', text: '  ├── Linux Hardening   ├── ISO 27001' },
+      { cls: '', text: '  └── OSINT             └── Active Directory' },
     ],
     'ls experience': () => [
       { cls: 'term-line-cyan', text: '-rw-r--r--  experience.log' },
-      { cls: 'term-line-accent', text: '  2025–NOW  JP Morgan Chase  · Risk Tech & Controls Analyst' },
-      { cls: '', text: '  2023–2024  Providence India · Security Analyst' },
-      { cls: '', text: '  2022       Syfe            · Security Engineer (Intern)' },
-      { cls: '', text: '  2021–2022  Tsaaro          · IT Administrator (Intern)' },
+      { cls: 'term-line-accent', text: '  2025–NOW  HackerOne   · Bug Hunter (Intern)' },
+      { cls: '', text: '  2021–2026  UTP         · Ing. Sistemas e Informática' },
     ],
     'cat contact': () => [
       { cls: 'term-line-cyan', text: 'contact.txt' },
-      { cls: 'term-line-accent', text: '  Email   : fdiaz.sec@proton.me' },
+      { cls: 'term-line-accent', text: '  Email    : fdiaz.sec@proton.me' },
       { cls: '', text: '  Location : Lima, Peru' },
+      { cls: '', text: '  GitHub   : github.com/Fernando-dev-cyber' },
     ],
     nmap: () => [
       { cls: 'term-line-muted', text: 'Starting nmap scan on target: FRDB...' },
@@ -273,10 +263,6 @@ window.addEventListener('DOMContentLoaded', () => {
       { cls: '', text: '22/tcp   open   ssh (secured)' },
       { cls: 'term-line-muted', text: '1 host up. All ports filtered. Try the contact form :)' },
     ],
-    blog: () => {
-      window.open('blog.html', '_blank');
-      return [{ cls: 'term-line-accent', text: 'Opening blog...' }];
-    },
     clear: () => { clearTerm(); return []; },
   };
 
@@ -343,7 +329,7 @@ if (form) {
       message: document.getElementById('f-message').value.trim()
     };
 
-    btn.textContent = '⏳ Transmitiendo paquete...';
+    btn.textContent = '>> transmitiendo paquete...';
     btn.disabled = true;
 
     try {
@@ -361,10 +347,10 @@ if (form) {
         btn.textContent = '✓ Paquete entregado (200 OK)';
         form.reset();
       } else {
-        btn.textContent = '⚠ Error en la transmisión';
+        btn.textContent = '✕ Error en la transmisión';
       }
     } catch (err) {
-      btn.textContent = '⚠ Fallo de red';
+      btn.textContent = '✕ Fallo de red';
     } finally {
       setTimeout(() => {
         btn.textContent = originalText;
@@ -408,8 +394,6 @@ if (form) {
       });
     });
   }
-
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Scroll Progress Bar ---------- */
   const progress = document.createElement('div');
@@ -559,7 +543,7 @@ if (form) {
           }
           if (r.stargazers_count > 0) {
             const stars = document.createElement('span');
-            stars.textContent = '★ ' + r.stargazers_count;
+            stars.innerHTML = iconSvg('star') + ' ' + r.stargazers_count;
             meta.appendChild(stars);
           }
           const pushed = document.createElement('span');

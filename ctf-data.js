@@ -45,7 +45,9 @@ var CTF_DATA = {
 };
 
 // Attach write-up slugs from the WRITEUPS map after the array is (re)built.
-if (CTF_DATA.writeups) {
+// `completions` lo genera thm-sync.yml y puede no existir todavía — guardarlo
+// evita un TypeError que rompe el resto del archivo.
+if (CTF_DATA.writeups && Array.isArray(CTF_DATA.completions)) {
   CTF_DATA.completions.forEach(function (c) {
     if (c && c.code && CTF_DATA.writeups[c.code]) c.writeupSlug = CTF_DATA.writeups[c.code];
   });
