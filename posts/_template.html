@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="es" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
@@ -39,7 +39,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="[EDIT: Post title]">
   <meta name="twitter:description" content="[EDIT: One-sentence hook for Twitter]">
-  <meta property="og:image" content="https://fernando-dev-cyber.github.io/Fernando-dev-cyber/winpixel.png">
+  <meta name="twitter:image" content="https://fernando-dev-cyber.github.io/Fernando-dev-cyber/winpixel.png">
 
   <!-- JSON-LD Article schema — crawlable by Google without JS -->
   <script type="application/ld+json">
@@ -58,9 +58,10 @@
   </script>
 
   <link rel="stylesheet" href="../css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- marked.js versionado: una versión fija evita romper el render si sale una release nueva -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
   <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡</text></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.85em' font-size='75' font-family='monospace' font-weight='bold' fill='%2310b981'>&gt;&gt;_</text></svg>">
 </head>
 
 <body>
@@ -74,11 +75,13 @@
         <li><a href="../index.html#domains">Domains</a></li>
         <li><a href="../index.html#projects">Projects</a></li>
         <li><a href="../blog.html">Blog</a></li>
-        <li><a href="../links.html">Personal</a></li>
         <li><a href="../index.html#contact">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">⬤ Dark</button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode"><svg class="icon"
+            aria-hidden="true">
+            <use href="../icons.svg#moon"></use>
+          </svg> Dark</button>
         <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -98,11 +101,11 @@
           blog-domain-badge--offense
           blog-domain-badge--governance
           blog-domain-badge--automation
-        Type options: 💡 TIL  |  🔧 Tool Teardown  |  🚩 CTF Write-up  |  📖 Research
+        Type options: TIL  |  Tool Teardown  |  CTF Write-up  |  Research
         Difficulty class options: post-diff--beginner  post-diff--intermediate  post-diff--advanced
       -->
         <span class="blog-domain-badge blog-domain-badge--[EDIT]">[EDIT: Domain label]</span>
-        <span class="blog-type-badge">[EDIT: 🔧 Tool Teardown]</span>
+        <span class="blog-type-badge">[EDIT: Tool Teardown]</span>
         <span class="post-diff post-diff--[EDIT: beginner]">[EDIT: beginner]</span>
       </div>
       <h1 class="section-title">[EDIT: Post title]</h1>
@@ -139,7 +142,10 @@
     </div>
   </footer>
 
-  <button class="terminal-fab" id="terminal-fab" aria-label="Open terminal" title="Open terminal">⌨</button>
+  <button class="terminal-fab" id="terminal-fab" aria-label="Open terminal" title="Open terminal"><svg class="icon"
+      aria-hidden="true">
+      <use href="../icons.svg#keyboard"></use>
+    </svg></button>
   <div class="terminal-window" id="terminal-window" role="dialog" aria-label="Interactive terminal">
     <div class="term-bar">
       <div class="term-dot term-dot-r"></div>
@@ -155,7 +161,11 @@
     </div>
   </div>
   <div class="achievement-toast" id="achievement-toast" role="status" aria-live="polite">
-    <div class="achievement-icon">🏆</div>
+    <div class="achievement-icon">
+      <svg class="icon" aria-hidden="true">
+        <use href="../icons.svg#trophy"></use>
+      </svg>
+    </div>
     <div class="achievement-text">
       <div class="achievement-label">Logro desbloqueado</div>
       <div class="achievement-name"></div>
